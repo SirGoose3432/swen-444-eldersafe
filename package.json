@@ -1,11 +1,21 @@
 {
-  "name"		: "elder-safe",
-  "version"	: "0.1.0",
-  "main"		: "main.js",
-	"scripts"	: {
-		"start"	:	"electron ."
-	},
-  "devDependencies"	: {
-    "electron": "1.7.9"
+  "name": "abs-demo",
+  "version": "1.0.0",
+  "description": "swen 444 web browser project",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "electron",
+    "browser",
+    "webview",
+    "react"
+  ],
+  "devDependencies": {
+    "electron-prebuilt": "^0.28.2"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
   }
 }
