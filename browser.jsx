@@ -54,7 +54,11 @@ var BrowserChrome = React.createClass({
       }
     })
   },
+  renderMenu: function(i)
+  {
 
+
+  },
   getWebView: function (i) {
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.refs['page-'+i].refs.webview.getDOMNode()
