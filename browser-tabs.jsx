@@ -1,5 +1,6 @@
-var BrowserTab = React.createClass({
-  render: function () {
+'use strict'
+class BrowserTab extends React.Component {
+  render() {
     var title = this.props.page.title || 'loading'
     return <div className={this.props.isActive ? 'active' : ''} title={title} onClick={this.props.onClick} onContextMenu={this.props.onContextMenu}>
       <span>
@@ -9,10 +10,10 @@ var BrowserTab = React.createClass({
       <a onClick={this.props.onClose}><i className="fa fa-close" /></a>
     </div>
   }
-})
+}
 
-var BrowserTabs = React.createClass({
-  render: function () {
+class BrowserTabs extends React.Component {
+  render() {
     var self = this
     return <div id="browser-tabs">
       <a className="close" onClick={this.props.onClose}><i className="fa fa-circle" /></a>
@@ -30,4 +31,4 @@ var BrowserTabs = React.createClass({
       <a className="newtab" onClick={this.props.onNewTab}><i className="fa fa-plus" /></a>
     </div>
   }  
-})
+}

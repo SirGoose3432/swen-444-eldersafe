@@ -1,37 +1,41 @@
+'use strict'
 var pathlib = require('path')
 
-var BrowserPageSearch = React.createClass({
-  componentDidUpdate: function (prevProps) {
+class BrowserPageSearch extends React.Component {
+  componentDidUpdate (prevProps) {
     if (!prevProps.isActive && this.props.isActive)
       this.refs.input.getDOMNode().focus()
-  },
-  shouldComponentUpdate: function (nextProps, nextState) {
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
     return (this.props.isActive != nextProps.isActive)
-  },
-  onKeyDown: function (e) {
+  }
+
+  onKeyDown (e) {
     if (e.keyCode == 13) {
       e.preventDefault()
       this.props.onPageSearch(e.target.value)
     }
-  },
-  render: function () {
+  }
+
+  render () {
     return <div id="browser-page-search" className={this.props.isActive ? 'visible' : 'hidden'}>
       <input ref="input" type="text" placeholder="Search..." onKeyDown={this.onKeyDown} />
     </div>
   }
-})
+}
 
-var BrowserPageStatus = React.createClass({
-  render: function () {
+class BrowserPageStatus extends React.Component {
+  render () {
     var status = this.props.page.statusText
     if (!status && this.props.page.isLoading)
       status = 'Loading...'
     return <div id="browser-page-status" className={status ? 'visible' : 'hidden'}>{status}</div>
   }
-})
+}
 
-var BrowserPage = React.createClass({
-  componentDidMount: function () {
+class BrowserPage extends React.Component {
+  componentDidMount () {
     // setup resize events
     window.addEventListener('resize', resize)
     resize()
@@ -43,28 +47,28 @@ var BrowserPage = React.createClass({
     // set location, if given
     if (this.props.page.location)
       this.navigateTo(this.props.page.location)
-  },
-  componentWillUnmount: function () {
+  }
+  componentWillUnmount () {
     window.removeEventListener('resize', resize)    
-  },
+  }
 
-  navigateTo: function (l) {
+  navigateTo (l) {
     var webview = this.refs.webview.getDOMNode()
     webview.setAttribute('src', l)
-  },
+  }
 
-  onPageSearch: function (query) {
+  onPageSearch (query) {
     this.refs.webview.getDOMNode().executeJavaScript('window.find("'+query+'", 0, 0, 1)')
-  },
+  }
 
-  render: function () {
+  render () {
     return <div id="browser-page" className={this.props.isActive ? 'visible' : 'hidden'}>
       <BrowserPageSearch isActive={this.props.page.isSearching} onPageSearch={this.onPageSearch} />
       <webview ref="webview" preload="./preload/main.js" onContextMenu={this.props.onContextMenu} />
       <BrowserPageStatus page={this.props.page} />
     </div>
   }  
-})
+}
 
 function webviewHandler (self, fnName) {
   return function (e) {

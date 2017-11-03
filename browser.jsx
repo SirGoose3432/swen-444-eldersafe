@@ -18,20 +18,137 @@ function createPageObject (location) {
   }
 }
 
-var BrowserChrome = React.createClass({
-  getInitialState: function () {
-    return {
+let BrowserChromeHandlers = {
+  tabHandlers: {
+    onNewTab() {
+      this.createTab()
+    },
+    onTabClick(e, page, pageIndex) {
+      this.setState({ currentPageIndex: pageIndex })
+    },
+    onTabContextMenu(e, page, pageIndex) {
+      this.tabContextMenu(pageIndex)
+    },
+    onTabClose(e, page, pageIndex) {
+      this.closeTab(pageIndex)
+    },
+    onMaximize() {
+      if (remote.getCurrentWindow())
+        remote.getCurrentWindow().maximize()
+      else
+        remote.unmaximize()
+    },
+    onMinimize() {
+      remote.getCurrentWindow().minimize()
+    },
+    onClose() {
+      remote.getCurrentWindow().close()
+    },
+  },
+
+  navHandlers: {
+    onClickHome() {
+      this.getWebView().goToIndex(0)
+    },
+    onClickBack() {
+      this.getWebView().goBack()
+    },
+    onClickForward() {
+      this.getWebView().goForward()
+    },
+    onClickRefresh() {
+      this.getWebView().reload()
+    },
+    onClickBundles() {
+      var location = urllib.parse(this.getWebView().getUrl()).path
+      this.getPage().navigateTo('/bundles/view.html#'+location)
+    },
+    onClickVersions() {
+      var location = urllib.parse(this.getWebView().getUrl()).path
+      this.getPage().navigateTo('/bundles/versions.html#'+location)
+    },
+    onClickSync: console.log.bind(console, 'sync'),
+    onEnterLocation(location) {
+      this.getPage().navigateTo(location)
+    },
+    onChangeLocation(location) {
+      var page = this.getPageObject()
+      page.location = location
+      this.setState(this.state)      
+    },
+    onLocationContextMenu(e) {
+      this.locationContextMenu(e.target)
+    },
+  },
+
+  pageHandlers: {
+    onDidStartLoading(e, page) {
+      page.isLoading = true
+      page.title = false
+      this.setState(this.state)
+    },
+    onDomReady(e, page, pageIndex) {
+      var webview = this.getWebView(pageIndex)
+      page.canGoBack = webview.canGoBack()
+      page.canGoForward = webview.canGoForward()
+      page.canRefresh = true
+      this.setState(this.state)
+    },
+    onDidStopLoading(e, page, pageIndex) {
+      // update state
+      var webview = this.getWebView(pageIndex)
+      page.statusText = false
+      page.location = webview.getUrl()
+      page.canGoBack = webview.canGoBack()
+      page.canGoForward = webview.canGoForward()
+      if (!page.title)
+        page.title = page.location
+      page.isLoading = false
+      this.setState(this.state)
+    },
+    onPageTitleSet(e) {
+      var page = this.getPageObject()
+      page.title = e.title
+      page.location = this.getWebView().getUrl()
+      this.setState(this.state)
+    },
+    onContextMenu(e, page, pageIndex) {
+      this.getWebView(pageIndex).send('get-contextmenu-data', { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
+    },
+    onIpcMessage(e, page) {
+      if (e.channel == 'status') {
+        page.statusText = e.args[0]
+        this.setState(this.state)
+      }
+      else if (e.channel == 'contextmenu-data') {
+        this.webviewContextMenu(e.args[0])
+      }
+    }
+  }
+};
+
+class BrowserChrome extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.tabHandlers = BrowserChromeHandlers.tabHandlers;
+    this.navHandlers = BrowserChromeHandlers.navHandlers;
+    this.pageHandlers = BrowserChromeHandlers.pageHandlers;
+
+    this.state = {
       pages: [createPageObject()],
       currentPageIndex: 0
     }
-  },
-  componentWillMount: function () {
+  }
+
+  componentWillMount () {
     // bind handlers to this object
     for (var k in this.tabHandlers)  this.tabHandlers[k]  = this.tabHandlers[k].bind(this)
     for (var k in this.navHandlers)  this.navHandlers[k]  = this.navHandlers[k].bind(this)
     for (var k in this.pageHandlers) this.pageHandlers[k] = this.pageHandlers[k].bind(this)
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount () {
     // attach webview events
     for (var k in this.webviewHandlers)
       this.getWebView().addEventListener(k, this.webviewHandlers[k].bind(this))
@@ -53,30 +170,29 @@ var BrowserChrome = React.createClass({
         self.setState(self.state)
       }
     })
-  },
-  renderMenu: function(i)
-  {
+  }
 
-
-  },
-  getWebView: function (i) {
+  getWebView (i) {
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.refs['page-'+i].refs.webview.getDOMNode()
-  },
-  getPage: function (i) {
+  }
+
+  getPage (i) {
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.refs['page-'+i]
-  },
-  getPageObject: function (i) {
+  }
+
+  getPageObject (i) {
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.state.pages[i]
-  },
+  }
 
-  createTab: function (location) {
+  createTab(location) {
     this.state.pages.push(createPageObject(location))
     this.setState({ pages: this.state.pages, currentPageIndex: this.state.pages.length - 1 })
-  },
-  closeTab: function (pageIndex) {
+  }
+
+  closeTab(pageIndex) {
     // last tab, full reset
     if (this.state.pages.filter(Boolean).length == 1)
       return this.setState({ pages: [createPageObject()], currentPageIndex: 0 })
@@ -95,9 +211,9 @@ var BrowserChrome = React.createClass({
           return this.setState({ currentPageIndex: i })
       }
     }
-  },
+  }
 
-  tabContextMenu: function (pageIndex) {
+  tabContextMenu(pageIndex) {
     var self = this
     var menu = new Menu()
     menu.append(new MenuItem({ label: 'New Tab', click: function () { self.createTab() } }))
@@ -105,8 +221,9 @@ var BrowserChrome = React.createClass({
     menu.append(new MenuItem({ type: 'separator' }))
     menu.append(new MenuItem({ label: 'Close Tab', click: function() { self.closeTab(pageIndex) } }))
     menu.popup(remote.getCurrentWindow())
-  },
-  locationContextMenu: function (el) {
+  }
+
+  locationContextMenu(el) {
     var self = this
     var menu = new Menu()
     menu.append(new MenuItem({ label: 'Copy', click: function () {
@@ -126,8 +243,9 @@ var BrowserChrome = React.createClass({
       self.getPage().navigateTo(l)
     }}))
     menu.popup(remote.getCurrentWindow())    
-  },
-  webviewContextMenu: function (e) {
+  }
+
+  webviewContextMenu(e) {
     var self = this
     var menu = new Menu()
     if (e.href) {
@@ -145,115 +263,9 @@ var BrowserChrome = React.createClass({
     menu.append(new MenuItem({ type: 'separator' }))
     menu.append(new MenuItem({ label: 'Inspect Element', click: function() { self.getWebView().inspectElement(e.x, e.y) } }))
     menu.popup(remote.getCurrentWindow())
-  },
+  }
 
-  tabHandlers: {
-    onNewTab: function () {
-      this.createTab()
-    },
-    onTabClick: function (e, page, pageIndex) {
-      this.setState({ currentPageIndex: pageIndex })
-    },
-    onTabContextMenu: function (e, page, pageIndex) {
-      this.tabContextMenu(pageIndex)
-    },
-    onTabClose: function (e, page, pageIndex) {
-      this.closeTab(pageIndex)
-    },
-    onMaximize: function () {
-      if (remote.getCurrentWindow())
-        remote.getCurrentWindow().maximize()
-      else
-        remote.unmaximize()
-    },
-    onMinimize: function () {
-      remote.getCurrentWindow().minimize()
-    },
-    onClose: function () {
-      remote.getCurrentWindow().close()
-    }
-  },
-
-  navHandlers: {
-    onClickHome: function () {
-      this.getWebView().goToIndex(0)
-    },
-    onClickBack: function () {
-      this.getWebView().goBack()
-    },
-    onClickForward: function () {
-      this.getWebView().goForward()
-    },
-    onClickRefresh: function () {
-      this.getWebView().reload()
-    },
-    onClickBundles: function () {
-      var location = urllib.parse(this.getWebView().getUrl()).path
-      this.getPage().navigateTo('/bundles/view.html#'+location)
-    },
-    onClickVersions: function () {
-      var location = urllib.parse(this.getWebView().getUrl()).path
-      this.getPage().navigateTo('/bundles/versions.html#'+location)
-    },
-    onClickSync: console.log.bind(console, 'sync'),
-    onEnterLocation: function (location) {
-      this.getPage().navigateTo(location)
-    },
-    onChangeLocation: function (location) {
-      var page = this.getPageObject()
-      page.location = location
-      this.setState(this.state)      
-    },
-    onLocationContextMenu: function (e) {
-      this.locationContextMenu(e.target)
-    }
-  },
-  pageHandlers: {
-    onDidStartLoading: function (e, page) {
-      page.isLoading = true
-      page.title = false
-      this.setState(this.state)
-    },
-    onDomReady: function (e, page, pageIndex) {
-      var webview = this.getWebView(pageIndex)
-      page.canGoBack = webview.canGoBack()
-      page.canGoForward = webview.canGoForward()
-      page.canRefresh = true
-      this.setState(this.state)
-    },
-    onDidStopLoading: function (e, page, pageIndex) {
-      // update state
-      var webview = this.getWebView(pageIndex)
-      page.statusText = false
-      page.location = webview.getUrl()
-      page.canGoBack = webview.canGoBack()
-      page.canGoForward = webview.canGoForward()
-      if (!page.title)
-        page.title = page.location
-      page.isLoading = false
-      this.setState(this.state)
-    },
-    onPageTitleSet: function (e) {
-      var page = this.getPageObject()
-      page.title = e.title
-      page.location = this.getWebView().getUrl()
-      this.setState(this.state)
-    },
-    onContextMenu: function (e, page, pageIndex) {
-      this.getWebView(pageIndex).send('get-contextmenu-data', { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
-    },
-    onIpcMessage: function (e, page) {
-      if (e.channel == 'status') {
-        page.statusText = e.args[0]
-        this.setState(this.state)
-      }
-      else if (e.channel == 'contextmenu-data') {
-        this.webviewContextMenu(e.args[0])
-      }
-    }
-  },
-
-  render: function() {
+  render() {
     var self = this
     return <div>
       <BrowserTabs ref="tabs" pages={this.state.pages} currentPageIndex={this.state.currentPageIndex} {...this.tabHandlers} />
@@ -265,10 +277,10 @@ var BrowserChrome = React.createClass({
       })}
     </div>
   }
-})
+}
 
 // render
-React.render(
+ReactDOM.render(
   <BrowserChrome />,
   document.getElementById('browser-chrome')
 )
