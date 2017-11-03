@@ -1,5 +1,11 @@
 body {
-	background-color: #fafafa;
+	background: #8B0000!important;
+	color: white !important;
+}
+
+.jumbotron {
+
+    background: #8B0000 !important;
 }
 
 .header {
@@ -17,3 +23,5 @@ body {
 .main-content {
 	background-color: #ffffff;
 }
+
+
