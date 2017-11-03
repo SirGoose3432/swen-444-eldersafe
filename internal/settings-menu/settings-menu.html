@@ -1,24 +1,64 @@
-<html>
-    <header>
-    </header>
-    <body class="home">
-    <link href="//css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <link href="//css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../settings-menu/settings-menu.css">
-        <div class="container-fluid display-table">
-            <div class="row display-table-row">
-                <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-                    <div class="navi">
-                        <ul>
-                            <li class="active"><a href="#"><span class="hidden-xs hidden-sm">Home</span></a></li>
-                            <li><a href="#"><span class="hidden-xs hidden-sm">General</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Extensions</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Media</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Security</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Assistence</span></a></li>
-                            <li><a href="#"><span class="hidden-xs hidden-sm">History</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Other</span></a></li>
-                        </ul>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="../../settings-menu/settings-menu.css">
+<body class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="#"><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="#"><span class="hidden-xs hidden-sm">General</span></a></li>
+												<li><a href="#"><span class="hidden-xs hidden-sm">Extensions</span></a></li>
+												<li><a href="#"><span class="hidden-xs hidden-sm">Media</span></a></li>
+												<li><a href="#"><span class="hidden-xs hidden-sm">Security</span></a></li>
+												<li><a href="#"><span class="hidden-xs hidden-sm">Assistence</span></a></li>
+                        <li><a href="#"><span class="hidden-xs hidden-sm">History</span></a></li>
+												<li><a href="#"><span class="hidden-xs hidden-sm">Other</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <div class="user-dashboard">
+                    <h1>Settings</h1>
+                    <div class="row">
+                      <h3>Do you want subtitles? </h3>
+                      <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                      </label>
+                      <h3> Do you want the account manager on? </h3>
+                      <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                      </label>
+                      <h3> Zoom </h3>
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                        </span>
+                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                        </span>
+                      </div>
+                      <h3>Volume</h3>
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                        </span>
+                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                        </span>
+                      </div>
                     </div>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
