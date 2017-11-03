@@ -1,19 +1,25 @@
-body {
-	background-color: #fafafa;
+.navbar-form input, .form-inline input {
+	width:auto;
 }
 
-.header {
-	background-color: #ffffff;
-	text-align: center;
-	margin-top: 10px;
+header {
+	height:270px;
 }
 
-.header-text {
-	background-color: #ffffff;
-	margin: auto;
-	vertical-align: middle;
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+  	margin-top:25px;
+  	width:228px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:25px;
+    width:228px;
+  }
 }
 
-.main-content {
-	background-color: #ffffff;
+.affix,.affix-top {
+   position:static;
 }
