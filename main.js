@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -28,6 +28,19 @@ function createWindow () {
     win = null
   })
 }
+
+ipcMain.on('open-second-window', (event, arg)=> {
+    const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+
+    var win2 = new BrowserWindow({ width: 800, height: 600 });
+
+    win2.webContents.on('did-finish-load', ()=> {
+       win2.show();
+       win2.focus();
+    });
+    win2.loadURL("internal/setup-wizard/setup-wizard.html");
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

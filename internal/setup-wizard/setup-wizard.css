@@ -1,19 +1,17 @@
-body {
-	background-color: #fafafa;
+html {
+	background-color: #f5f5f5;
 }
 
 .header {
-	background-color: #ffffff;
 	text-align: center;
 	margin-top: 10px;
 }
 
 .header-text {
-	background-color: #ffffff;
 	margin: auto;
 	vertical-align: middle;
 }
 
-.main-content {
-	background-color: #ffffff;
+.setup-text{
+	font-size: 16px;
 }
