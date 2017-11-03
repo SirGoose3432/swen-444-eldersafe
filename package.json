@@ -1,7 +1,7 @@
 {
   "name": "abs-demo",
   "version": "1.0.0",
-  "description": "swen 444 web browser project",
+  "description": "swen 444 demo for a special web browser",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,10 +12,11 @@
     "webview",
     "react"
   ],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^0.28.2"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
   }
 }

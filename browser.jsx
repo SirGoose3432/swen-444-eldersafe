@@ -54,11 +54,7 @@ var BrowserChrome = React.createClass({
       }
     })
   },
-  renderMenu: function(i)
-  {
 
-
-  },
   getWebView: function (i) {
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.refs['page-'+i].refs.webview.getDOMNode()
@@ -71,7 +67,6 @@ var BrowserChrome = React.createClass({
     i = (typeof i == 'undefined') ? this.state.currentPageIndex : i
     return this.state.pages[i]
   },
-
   createTab: function (location) {
     this.state.pages.push(createPageObject(location))
     this.setState({ pages: this.state.pages, currentPageIndex: this.state.pages.length - 1 })
@@ -146,6 +141,12 @@ var BrowserChrome = React.createClass({
     menu.append(new MenuItem({ label: 'Inspect Element', click: function() { self.getWebView().inspectElement(e.x, e.y) } }))
     menu.popup(remote.getCurrentWindow())
   },
+  navbarMenuContextMenu: function (e) { 
+    var self = this
+    var menu = new Menu()
+    menu.append(new MenuItem({ label: "Open settings", click: function() { self.getPage().navigateTo("internal/settings-menu/settings-menu.html") }}))
+    menu.popup(remote.getCurrentWindow())
+  },
 
   tabHandlers: {
     onNewTab: function () {
@@ -206,7 +207,10 @@ var BrowserChrome = React.createClass({
     },
     onLocationContextMenu: function (e) {
       this.locationContextMenu(e.target)
-    }
+    },
+    onClickNavMenu: function (e) {
+      this.navbarMenuContextMenu(e.target)
+    },
   },
   pageHandlers: {
     onDidStartLoading: function (e, page) {
