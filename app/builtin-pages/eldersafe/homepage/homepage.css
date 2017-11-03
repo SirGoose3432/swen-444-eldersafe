@@ -1,0 +1,19 @@
+body {
+	background-color: #fafafa;
+}
+
+.header {
+	background-color: #ffffff;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.header-text {
+	background-color: #ffffff;
+	margin: auto;
+	vertical-align: middle;
+}
+
+.main-content {
+	background-color: #ffffff;
+}

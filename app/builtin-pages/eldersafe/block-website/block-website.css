@@ -1,0 +1,27 @@
+body {
+	background: #8B0000!important;
+	color: white !important;
+}
+
+.jumbotron {
+
+    background: #8B0000 !important;
+}
+
+.header {
+	background-color: #ffffff;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.header-text {
+	background-color: #ffffff;
+	margin: auto;
+	vertical-align: middle;
+}
+
+.main-content {
+	background-color: #ffffff;
+}
+
+

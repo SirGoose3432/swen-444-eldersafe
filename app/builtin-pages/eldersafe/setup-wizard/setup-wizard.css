@@ -1,0 +1,17 @@
+html {
+	background-color: #f5f5f5;
+}
+
+.header {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.header-text {
+	margin: auto;
+	vertical-align: middle;
+}
+
+.setup-text{
+	font-size: 16px;
+}

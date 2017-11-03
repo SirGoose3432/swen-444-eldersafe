@@ -58,6 +58,50 @@ export function setup () {
 // internal methods
 // =
 
+// MODFIED BY BinderNews
+var URL_MAP = {
+  'beaker://css/bootstrap.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap.min.css' },
+  'beaker://css/bootstrap-4.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap-4.min.css' },
+  'beaker://css/font-awesome.min.css': { type: 'css', path: 'builtin-pages/eldersafe/settings-menu/font-awesome.min.css' },
+  'beaker://js/jquery.min.js': { type: 'js', path: 'builtin-pages/eldersafe/block-website/jquery.min.js' },
+  'beaker://js/bootstrap.min.js': { type: 'js', path: 'builtin-pages/eldersafe/block-website/bootstrap.min.js' },
+  'beaker://js/bootstrap-4.min.js': { type: 'js', path: 'builtin-pages/eldersafe/bootstrap-4.min.js' },
+
+  'beaker://settings/': { type: 'html', path: 'builtin-pages/eldersafe/settings-menu/settings-menu.html' },
+  'beaker://css/settings-menu.css': { type: 'css', path: 'builtin-pages/eldersafe/settings-menu/settings-menu.css' },
+  
+  'beaker://suspicious-site/': { type: 'html', path: 'builtin-pages/eldersafe/block-website/block-website.html' },
+  'beaker://css/block-website.css': { type: 'css', path: 'builtin-pages/eldersafe/block-website/block-website.css' },
+
+  'beaker://start/': { type: 'html', path: 'builtin-pages/eldersafe/homepage/browserHomePage.html' },
+  'beaker://css/browser-homepage.css': { type: 'css', path: 'builtin-pages/eldersafe/homepage/homepage.css'},
+
+  'beaker://setup-wizard/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-wizard.html' },
+  'beaker://setup-1/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-1.html' },
+  'beaker://setup-2/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-2.html' },
+  'beaker://setup-3/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-3.html' },
+  'beaker://setup-4/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-4.html' },
+  'beaker://setup-wizard.css': { type: 'css', path: 'builtin-pages/eldersafe/setup-wizard/setup-wizard.css' },
+  'beaker://setup.js': { type: 'js', path: 'builtin-pages/eldersafe/setup-wizard/setup.js' },
+};
+
+fs.readdir(path.join(__dirname, 'builtin-pages/eldersafe/homepage/'), (err, files) => {
+  files.forEach((fn) => {
+    if (fn.endsWith('.png')) {
+      var beakerPath = 'beaker://start/' + fn
+      URL_MAP[beakerPath] = { type: 'png', path: ('builtin-pages/eldersafe/homepage/' + fn) };
+    }
+  });
+});
+
+var TYPE_MAP = {
+  'css':  'text/css; charset=utf-8',
+  'js':   'application/javascript; charset=utf-8',
+  'html': 'text/html; charset=utf-8',
+  'png': 'image/png',
+};
+
+
 async function beakerServer (req, res) {
   var cb = once((code, status, contentType, path) => {
     res.writeHead(code, status, {
@@ -95,6 +139,12 @@ async function beakerServer (req, res) {
   // (only want this process to access the server)
   if (queryParams.nonce !== requestNonce) {
     return cb(403, 'Forbidden')
+  }
+
+  // MODIFIED BY BinderNews
+  var mapResult = URL_MAP[requestUrl];
+  if (mapResult) {
+    return cb(200, 'OK', TYPE_MAP[mapResult.type], path.join(__dirname, mapResult.path))
   }
 
   // browser ui
@@ -200,7 +250,7 @@ async function beakerServer (req, res) {
     return cb(200, 'OK', 'text/html; charset=utf-8', path.join(__dirname, 'builtin-pages/swarm-debugger.html'))
   }
   if (requestUrl === 'beaker://settings/') {
-    return cb(200, 'OK', 'text/html; charset=utf-8', path.join(__dirname, 'builtin-pages/settings.html'))
+    // return cb(200, 'OK', 'text/html; charset=utf-8', path.join(__dirname, 'builtin-pages/settings.html'))
   }
   if (requestUrl === 'beaker://settings/main.js') {
     return cb(200, 'OK', 'application/javascript; charset=utf-8', path.join(__dirname, 'builtin-pages/build/settings.build.js'))
