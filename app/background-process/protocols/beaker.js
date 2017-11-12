@@ -63,9 +63,11 @@ var URL_MAP = {
   'beaker://css/bootstrap.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap.min.css' },
   'beaker://css/bootstrap-4.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap-4.min.css' },
   'beaker://css/font-awesome.min.css': { type: 'css', path: 'builtin-pages/eldersafe/settings-menu/font-awesome.min.css' },
+  'beaker://css/bootstrap-switch.min.css': { type: 'css', path: 'builtin-pages/eldersafe/setup-wizard/bootstrap-switch.min.css' },
   'beaker://js/jquery.min.js': { type: 'js', path: 'builtin-pages/eldersafe/block-website/jquery.min.js' },
   'beaker://js/bootstrap.min.js': { type: 'js', path: 'builtin-pages/eldersafe/block-website/bootstrap.min.js' },
   'beaker://js/bootstrap-4.min.js': { type: 'js', path: 'builtin-pages/eldersafe/bootstrap-4.min.js' },
+  'beaker://js/bootstrap-switch.min.js': { type: 'js', path: 'builtin-pages/eldersafe/setup-wizard/bootstrap-switch.min.js' },
 
   'beaker://settings/': { type: 'html', path: 'builtin-pages/eldersafe/settings-menu/settings-menu.html' },
   'beaker://css/settings-menu.css': { type: 'css', path: 'builtin-pages/eldersafe/settings-menu/settings-menu.css' },
@@ -81,8 +83,9 @@ var URL_MAP = {
   'beaker://setup-2/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-2.html' },
   'beaker://setup-3/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-3.html' },
   'beaker://setup-4/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-4.html' },
-  'beaker://setup-wizard.css': { type: 'css', path: 'builtin-pages/eldersafe/setup-wizard/setup-wizard.css' },
-  'beaker://setup.js': { type: 'js', path: 'builtin-pages/eldersafe/setup-wizard/setup.js' },
+  'beaker://setup-5/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-5.html' },
+  'beaker://css/setup-wizard.css': { type: 'css', path: 'builtin-pages/eldersafe/setup-wizard/setup-wizard.css' },
+  'beaker://js/setup.js': { type: 'js', path: 'builtin-pages/eldersafe/setup-wizard/setup.js' },
 };
 
 fs.readdir(path.join(__dirname, 'builtin-pages/eldersafe/homepage/'), (err, files) => {
@@ -90,6 +93,15 @@ fs.readdir(path.join(__dirname, 'builtin-pages/eldersafe/homepage/'), (err, file
     if (fn.endsWith('.png')) {
       var beakerPath = 'beaker://start/' + fn
       URL_MAP[beakerPath] = { type: 'png', path: ('builtin-pages/eldersafe/homepage/' + fn) };
+    }
+  });
+});
+
+fs.readdir(path.join(__dirname, 'builtin-pages/eldersafe/setup-wizard/'), (err, files) => {
+  files.forEach((fn) => {
+    if (fn.endsWith('.png')) {
+      var beakerPath = 'beaker://setup-4/' + fn
+      URL_MAP[beakerPath] = { type: 'png', path: ('builtin-pages/eldersafe/setup-wizard/' + fn) };
     }
   });
 });

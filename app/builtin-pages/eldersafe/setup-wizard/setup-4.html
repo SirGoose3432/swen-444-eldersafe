@@ -2,31 +2,78 @@
 <html lang="en" dir="ltr">
 <head>
 <title>Setup Wizard</title>
-	<link rel="stylesheet" href="setup-wizard.css">
+	<link rel="stylesheet" href="//css/setup-wizard.css">
 	<link rel="stylesheet" href="//css/bootstrap.min.css">
+	<script src="//js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="col-sm-6 col-sm-offset-3" style="padding-top: 48px;">
-		<div class="panel panel-default" style="height: 600px; position: relative;">
+		<div class="panel panel-default" style="height: 800px; position: relative;">
 			<div class="header">
-			<h2 class="header-text">Setup - Finished</h2>
+			<h2 class="header-text">Setup - Part 4 of 5</h2>
 			<hr>
 			</div>
 
 			<div style="padding-left: 16px; padding-right: 16px;">
-				<p class="setup-text">Finished with the setup. Press the button below to continue.</p>
+				<p class="setup-text">Select favorite sites to start off with</p>
+			</div>
+
+			<div style="padding-left: 72px; padding-right: 72px; padding-top: 32px;">
+				<div class="setup-4-div">
+					<div style="float: left;">
+						<img src="/facebook.png" height="90" width="90" class="img-fluid z-depth-1 " alt="Responsive image"/>
+						<p>Facebook</p>
+					</div>
+					<label class="switch" style="float: right;">
+					  <input id="checkbox-1" type="checkbox" name="checkbox-1">
+					  <span class="slider"></span>
+					</label>
+				</div>
+				<hr>
+				<div class="setup-4-div">
+					<div style="float: left;">
+						<img src="/gmail.png" height="90" width="90" class="img-fluid z-depth-1 " alt="Responsive image"/>
+						<p>Gmail</p>
+					</div>
+					<label class="switch" style="float: right;">
+					  <input id="checkbox-1" type="checkbox" name="checkbox-1">
+					  <span class="slider"></span>
+					</label>
+				</div>
+				<hr>
+				<div class="setup-4-div">
+					<div style="float: left;">
+						<img src="/youtube.png" height="90" width="90" class="img-fluid z-depth-1 " alt="Responsive image"/>
+						<p>YouTube</p>
+					</div>
+					<label class="switch" style="float: right;">
+					  <input id="checkbox-1" type="checkbox" name="checkbox-1">
+					  <span class="slider"></span>
+					</label>
+				</div>
+				<hr>
+				<div class="setup-4-div">
+					<div style="float: left;">
+						<img src="/netflix.png" height="90" width="90" class="img-fluid z-depth-1 " alt="Responsive image"/>
+						<p>Netflix</p>
+					</div>
+					<label class="switch" style="float: right;">
+					  <input id="checkbox-1" type="checkbox" name="checkbox-1">
+					  <span class="slider"></span>
+					</label>
+				</div>
 			</div>
 
 			<div class="col-sm-12" style="position: absolute; bottom: 16px;">
 				<hr>
-				<form action="//setup-2">
-    				<input class="btn btn-primary" style="float: right;" type="submit" value="Continue" />
+				<form action="//setup-3">
+    				<input class="btn btn-default" style="float: left;" type="submit" value="Back" />
+				</form>
+				<form action="//setup-5">
+    				<input class="btn btn-primary" style="float: right;" type="submit" value="Next" />
 				</form>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		//$("[name='my-checkbox']").bootstrapSwitch();
-	</script>
 </body>
 </html>

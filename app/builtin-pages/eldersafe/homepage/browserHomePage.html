@@ -17,14 +17,18 @@
 <body>
   <div class="container">
     <center> <strong> <h1> <p> ElderSafe WebBrowser </p></h1></strong></center>
-    
+    <script type="text/javascript">
+    	function doSearch() {
+    		var searchString = document.querySelector("#searchbox").text;
+    		window.location = "https://duckduckgo.com/?q=" + encodeURIComponent(searchString)
+    	}
+    </script>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+    	<form>
+    		<input type="text" style="float: left;" class="form-control" id="searchbox" placeholder="Search">
+    		<button type="submit" style="float: right;" class="btn btn-default" onclick="doSearch()">Search</button>
+		</form>
     </div>
-    <button type="submit" class="btn btn-default">Search</button>
-    
-    
-    
     <div class="card">
       <div class="card-header">
         <h3 align="left" class="card-title">Recently Visited Sites</h3>
