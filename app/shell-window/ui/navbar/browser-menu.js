@@ -127,6 +127,11 @@ export class BrowserMenuNavbarBtn {
                 <i class="fa fa-gear"></i>
                 Settings
               </div>
+
+              <div class="grid-item" onclick=${e => this.onOpenPage(e, 'beaker://demo')}>
+                <i class="fa fa-wheelchair-alt"></i>
+                Demo
+              </div>
             </div>
 
             ${downloadEls.length ? yo`

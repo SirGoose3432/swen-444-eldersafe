@@ -59,6 +59,7 @@ export function setup () {
 // =
 
 // MODFIED BY BinderNews
+var ELDERSAFE = 'builtin-pages/eldersafe/';
 var URL_MAP = {
   'beaker://css/bootstrap.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap.min.css' },
   'beaker://css/bootstrap-4.min.css': { type: 'css', path: 'builtin-pages/eldersafe/bootstrap-4.min.css' },
@@ -77,6 +78,9 @@ var URL_MAP = {
 
   'beaker://start/': { type: 'html', path: 'builtin-pages/eldersafe/homepage/browserHomePage.html' },
   'beaker://css/browser-homepage.css': { type: 'css', path: 'builtin-pages/eldersafe/homepage/homepage.css'},
+
+  'beaker://demo/': { type: 'html', path: ELDERSAFE + 'demo-home.html' },
+  'beaker://demo-home.css': { type: 'css', path: ELDERSAFE + 'demo-home.css' },
 
   'beaker://setup-wizard/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-wizard.html' },
   'beaker://setup-1/': { type: 'html', path: 'builtin-pages/eldersafe/setup-wizard/setup-1.html' },
