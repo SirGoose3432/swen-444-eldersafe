@@ -8,21 +8,32 @@
     <meta name="description" content="Brwoser HomePage">
     <meta name="author" content="SadafChowdhury">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/browser-homepage.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    <link rel="stylesheet" href="../../css/browser-homepage.css">
+    <script src="//js/bootstrap-4.min.js"></script>
+
+
 
 </head>
 
 <body>
     <center> <strong> <h1> <p> ElderSafe WebBrowser </p></h1></strong></center>
     
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <form method="get" action="http://www.google.com/search">
+
+        <div style="border:2px ;padding:4px;width:15em;">
+        <table border="0" align="center" cellpadding="0">
+        <tr><td>
+        <input class="google" type="text"   name="q" size="150" style="color:#808080;"
+        maxlength="255" value="Google site search"
+        onfocus="if(this.value==this.defaultValue)this.value=''; this.style.color='black';" onblur="if(this.value=='')this.value=this.defaultValue; "/>
+        
+        <input type="hidden" name="sitesearch" value="" /></td></tr>
+        </table>
+        </div>
+        <input class="btn-default" type="submit" value="Search" />
+    </form>
     
+        
     
     
     <div class="card">
