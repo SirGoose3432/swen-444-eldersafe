@@ -7,42 +7,28 @@
     <title>New Tab</title>
     <meta name="description" content="Brwoser HomePage">
     <meta name="author" content="Sadaf Chowdhury">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="browser-homepage.css">
-    
-    
-
-
+    <link rel="stylesheet" href="//css/bootstrap-4.min.css">
+    <link rel="stylesheet" href="//css/browser-homepage.css">
 </head>
-
 <body>
     <center> <strong> <h1> <p> ElderSafe WebBrowser </p></h1></strong></center>
     
     <form method="get" action="http://www.google.com/search">
-
-        <div style="border:2px ;padding:4px;width:15em;">
-        <table border="0" align="center" cellpadding="0">
-        <tr><td>
-        <input class="google" type="text"   name="q" size="150" style="color:#808080;"
-        maxlength="255" value="Google site search"
-        onfocus="if(this.value==this.defaultValue)this.value=''; this.style.color='black';" onblur="if(this.value=='')this.value=this.defaultValue; "/>
-        
-        <input type="hidden" name="sitesearch" value="" /></td></tr>
+      <div style="border:2px ;padding:4px;width:100%;">
+        <table border="0" cellpadding="10px" >
+          <tr>
+            <td style="width:100%"><input class="google" style="width:100%" type="text" name="q" maxlength="255" placeholder="Google site search" /></td>
+            <td><input class="btn-default" type="submit" value="Search" /></td>
+          </tr>
         </table>
-        </div>
-        <input class="btn-default" type="submit" value="Search" />
+      </div>
+      <input type="hidden" name="sitesearch" value="" />
     </form>
-    
-        
-    
     
     <div class="card">
       <div class="card-header">
         <h3 align="left" class="card-title">Recently Visited Sites</h3>
       </div>
-        
     
       <div class="card-body">
         <table class="table" width="100">
