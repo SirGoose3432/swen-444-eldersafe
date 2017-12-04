@@ -12,12 +12,11 @@
                         <ul>
                             <li class="active"><a href="beaker://start/"><span class="hidden-xs hidden-sm">Home</span></a></li>
                             <li><a href="#"><span class="hidden-xs hidden-sm">General</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Extensions</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Media</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Security</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Assistence</span></a></li>
+                            <li><a href="#"><span class="hidden-xs hidden-sm">Extensions</span></a></li>
+                            <li><a href="#"><span class="hidden-xs hidden-sm">Media</span></a></li>
+                            <li><a href="#"><span class="hidden-xs hidden-sm">Security</span></a></li>
+                            <li><a href="#"><span class="hidden-xs hidden-sm">Assistence</span></a></li>
                             <li><a href="#"><span class="hidden-xs hidden-sm">History</span></a></li>
-                                                    <li><a href="#"><span class="hidden-xs hidden-sm">Other</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -29,21 +28,35 @@
                           <h3> General </h3>
                           <h3>Extensions</h3>
                           <h3>Media</h3>
-                            <li>Would you like subtitles for videos? </li>
+                            <li>Would you like to turn on subtitles for videos? </li>
                               <form action="">
-                                <input type="checkbox" name="subtiltes" value="yes"> Yes add subtitles<br>
+                                <label class="switch">
+                                  <input type="checkbox">
+                                  <span class="slider round"></span>
+                                </label>
                               </form>
                           <h3>Security</h3>
                             <li>Would you want to be asked to remember every username and password entered?"</li>
                               <form action="">
                                 <input type="checkbox" name="secure" value="yes"> Yes I would like to be notified first<br>
                                 <input type="checkbox" name="secure" value="no">No I don't want to be notified <br>
+                                <input type="checkbox" name="secure" value="nope">I don't want my usernames or passwords saved <br>
                               </form>
                           <h3>Assistence</h3>
                              <li>Are you color blind? If so click the color blindness you have and the colors will then be adjusted</li>
                               <form action="">
-                                 <input type="checkbox" name="color" value="Red"> Red-Green<br>
-                                 <input type="checkbox" name="color" value="Yellow"> Yellow-Blue<br>
+                                 <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                 </label>
+                                  Red-Green
+                                  <br>
+                                 <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                 </label>
+                                  Yellow-Blue
+                                  <br>
                                  <input type="checkbox" name="color" value"na"=""> I am not colorbind or I am totally colorblind<br>
                               </form>
                           <h3> History</h3>
