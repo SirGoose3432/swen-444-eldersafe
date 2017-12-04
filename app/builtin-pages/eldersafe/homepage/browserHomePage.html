@@ -6,29 +6,38 @@
 
     <title>New Tab</title>
     <meta name="description" content="Brwoser HomePage">
-    <meta name="author" content="SadafChowdhury">
+    <meta name="author" content="Sadaf Chowdhury">
 
-    <link rel="stylesheet" href="//css/bootstrap.min.css">
-    <link rel="stylesheet" href="//css/browser-homepage.css">
-    <script src="//js/jquery.min.js"></script>
-    <script src="//js/bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="browser-homepage.css">
+    
+    
+
+
 </head>
 
 <body>
-  <div class="container">
     <center> <strong> <h1> <p> ElderSafe WebBrowser </p></h1></strong></center>
-    <script type="text/javascript">
-    	function doSearch() {
-    		var searchString = document.querySelector("#searchbox").text;
-    		window.location = "https://duckduckgo.com/?q=" + encodeURIComponent(searchString)
-    	}
-    </script>
-    <div class="form-group">
-    	<form>
-    		<input type="text" style="float: left;" class="form-control" id="searchbox" placeholder="Search">
-    		<button type="submit" style="float: right;" class="btn btn-default" onclick="doSearch()">Search</button>
-		</form>
-    </div>
+    
+    <form method="get" action="http://www.google.com/search">
+
+        <div style="border:2px ;padding:4px;width:15em;">
+        <table border="0" align="center" cellpadding="0">
+        <tr><td>
+        <input class="google" type="text"   name="q" size="150" style="color:#808080;"
+        maxlength="255" value="Google site search"
+        onfocus="if(this.value==this.defaultValue)this.value=''; this.style.color='black';" onblur="if(this.value=='')this.value=this.defaultValue; "/>
+        
+        <input type="hidden" name="sitesearch" value="" /></td></tr>
+        </table>
+        </div>
+        <input class="btn-default" type="submit" value="Search" />
+    </form>
+    
+        
+    
+    
     <div class="card">
       <div class="card-header">
         <h3 align="left" class="card-title">Recently Visited Sites</h3>
@@ -41,43 +50,43 @@
             <tr>
               <td align="center">
                   <a href="https://www.facebook.com">
-                  <img src="facebook.png" height="120" width="120" class="img-fluid z-depth-1 " alt="Responsive image"> </a> <div class = "text" > <a href="https://www.facebook.com">
+                  <img src="facebook.png" height="50" width="120" class="img-fluid z-depth-1 " alt="Responsive image"> </a> <div class = "text" > <a href="https://www.facebook.com">
                   facebook.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.google.com">
-                  <img src="google.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.google.com">
+                  <img src="google.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.google.com">
                   google.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.youtube.com">
-                  <img src="youtube.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.youtube.com">
+                  <img src="youtube.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.youtube.com">
                   youtube.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.gmail.com">
-                  <img src="gmail.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.gmail.com">
+                  <img src="gmail.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.gmail.com">
                   gmail.com </a></div></td>            
               </tr>
              <tr>
               <td align="center">
                   <a href="https://www.yahoo.com">
-                  <img src="yahoo.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.yahoo.com">
+                  <img src="yahoo.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.yahoo.com">
                   yahoo.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.ebay.com">
-                  <img src="ebay.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.ebay.com">
+                  <img src="ebay.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.ebay.com">
                   ebay.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.netflix.com">
-                  <img src="netflix.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.netflix.com">
+                  <img src="netflix.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.netflix.com">
                   netflix.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.drive.google.com">
-                  <img src="drive.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.drive.google.com">
+                  <img src="drive.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.drive.google.com">
                   drive.google.com </a></div></td> 
             </tr>
           </tbody>
@@ -97,22 +106,22 @@
             <tr>
               <td align="center">
                   <a href="https://www.facebook.com">
-                  <img src="facebook.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.facebook.com">
+                  <img src="facebook.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.facebook.com">
                   facebook.com </a></div></td>
                 
                <td align="center">
                   <a href="https://www.youtube.com">
-                  <img src="youtube.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.youtube.com">
+                  <img src="youtube.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.youtube.com">
                   youtube.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.google.com">
-                  <img src="google.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.google.com">
+                  <img src="google.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.google.com">
                   google.com </a></div></td>
                 
               <td align="center">
                   <a href="https://www.ebay.com">
-                  <img src="ebay.png" height="120" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.ebay.com">
+                  <img src="ebay.png" height="50" width="120" class="img-fluid z-depth-1" alt="Responsive image"> </a> <div class = "text" > <a href="https://www.ebay.com">
                   ebay.com </a></div></td>
             </tr>
           </tbody>
@@ -120,7 +129,7 @@
     
       </div>
     </div>
-  </div>
+    
     
 </body>
 </html>
